@@ -1,0 +1,204 @@
+/* AI Study Solver — styles
+   Dark theme everywhere: on the glasses' see-through display, black = transparent. */
+
+:root {
+  --bg: #05070b;
+  --panel: #0f1621;
+  --panel-2: #172231;
+  --line: #2a3a50;
+  --text: #f3f6fa;
+  --muted: #a9b6c7;
+  --accent: #5ee6a8;      /* green: SOLVE / primary */
+  --accent-ink: #00170d;
+  --info: #7cc4ff;
+  --warn: #ffd166;
+  --danger: #ff7a7a;
+  --focus: #ffd166;
+  --radius: 18px;
+  --gap: 16px;
+  --btn-h: 64px;
+  --fs: 19px;
+  --fs-step: 22px;
+  --maxw: 760px;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 400 var(--fs)/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.sr-only, .skip:not(:focus) {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.skip:focus { position: fixed; top: 8px; left: 8px; z-index: 10; background: var(--panel); padding: 8px 12px; color: var(--text); }
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px 18px; max-width: var(--maxw); width: 100%; margin: 0 auto;
+}
+.brand { font-size: 22px; margin: 0; font-weight: 700; letter-spacing: .2px; }
+.brand span { color: var(--accent); }
+.topbar-actions { display: flex; gap: 10px; }
+
+main { flex: 1; width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 18px 24px; }
+.view { display: flex; flex-direction: column; gap: var(--gap); }
+.view[hidden] { display: none; }
+
+/* ---------- buttons ---------- */
+.btn, .chip {
+  appearance: none; border: 2px solid var(--line); background: var(--panel-2); color: var(--text);
+  font: inherit; font-weight: 700; letter-spacing: .5px; border-radius: var(--radius);
+  min-height: var(--btn-h); padding: 10px 18px; cursor: pointer;
+  touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;
+  transition: transform .08s ease, background .15s ease, border-color .15s ease;
+}
+.btn { width: 100%; }
+.btn:active:not(:disabled), .chip:active { transform: scale(.98); }
+.btn:hover:not(:disabled), .chip:hover { border-color: var(--info); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.primary { background: var(--info); border-color: var(--info); color: #001426; }
+.btn.solve {
+  background: var(--accent); border-color: var(--accent); color: var(--accent-ink);
+  min-height: calc(var(--btn-h) * 1.5); font-size: 1.6em; letter-spacing: 3px;
+}
+.btn.ghost { background: transparent; }
+.btn.notice { background: transparent; border-color: var(--warn); color: var(--warn); }
+.chip { min-height: 48px; padding: 6px 14px; font-size: 16px; border-radius: 999px; }
+.chip.icon { width: 48px; padding: 0; font-size: 22px; }
+
+/* Big, obvious focus ring — needed for Neural Band / keyboard navigation */
+:focus { outline: none; }
+:focus-visible, .btn:focus, .chip:focus, select:focus, input:focus {
+  outline: 4px solid var(--focus); outline-offset: 3px;
+}
+.step-panel:focus { outline: none; }
+.step-panel:focus-visible { outline: 3px dashed var(--focus); outline-offset: 2px; }
+
+.row { display: grid; gap: var(--gap); }
+.row.two, .row.nav { grid-template-columns: 1fr 1fr; }
+
+/* ---------- capture ---------- */
+.preview {
+  min-height: 240px; border: 3px dashed var(--line); border-radius: var(--radius); background: var(--panel);
+  display: grid; place-items: center; padding: 14px; overflow: hidden; text-align: center;
+}
+.preview.drag { border-color: var(--accent); }
+.preview img { max-width: 100%; max-height: 48vh; border-radius: 10px; object-fit: contain; }
+.hint { color: var(--muted); margin: 0; font-size: 1.05em; }
+.small { font-size: 15px; color: var(--muted); margin: 0; }
+.center { text-align: center; }
+.big { font-size: 1.6em; margin: 8px 0 0; }
+.lead { font-size: 1.1em; color: var(--muted); margin: 0; overflow-wrap: anywhere; }
+
+/* ---------- loading ---------- */
+.spinner {
+  width: 72px; height: 72px; margin: 40px auto 0; border-radius: 50%;
+  border: 7px solid var(--panel-2); border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } }
+
+/* ---------- result ---------- */
+.step-meta { display: flex; justify-content: space-between; color: var(--muted); font-weight: 700; font-size: 16px; }
+.step-panel {
+  background: var(--panel); border: 2px solid var(--line); border-radius: var(--radius);
+  padding: 20px 22px; min-height: 220px; max-height: 58vh; overflow-y: auto;
+  -webkit-overflow-scrolling: touch; overscroll-behavior: contain; scroll-behavior: smooth;
+}
+.step-title { margin: 0 0 10px; font-size: 1.3em; color: var(--info); }
+.step-body { font-size: var(--fs-step); line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+.step-body p { margin: 0 0 .7em; }
+.answer {
+  font-size: 1.35em; font-weight: 800; color: var(--accent);
+  border-left: 6px solid var(--accent); padding: 4px 0 4px 14px; margin: 4px 0 14px;
+}
+.label { display: block; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.warn-text { color: var(--warn); }
+.dots { display: flex; justify-content: center; gap: 7px; flex-wrap: wrap; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.dots i.on { background: var(--info); }
+
+/* ---------- toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  background: var(--panel-2); border: 2px solid var(--info); color: var(--text);
+  padding: 12px 18px; border-radius: 14px; max-width: 90vw; z-index: 20; font-weight: 600;
+}
+
+/* ---------- settings dialog ---------- */
+dialog {
+  background: var(--panel); color: var(--text); border: 2px solid var(--line); border-radius: 22px;
+  width: min(540px, 94vw); max-height: 92dvh; padding: 22px; overflow-y: auto;
+}
+dialog::backdrop { background: rgba(0, 0, 0, .7); }
+dialog h2 { margin: 0 0 8px; }
+dialog form { display: flex; flex-direction: column; gap: 10px; }
+dialog label { font-weight: 700; margin-top: 6px; }
+dialog input, dialog select {
+  font: inherit; font-size: 17px; /* ≥16px stops iPhone from zooming */
+  min-height: 54px; padding: 10px 14px; border-radius: 12px;
+  border: 2px solid var(--line); background: var(--bg); color: var(--text); width: 100%;
+}
+
+/* ---------- PC: larger and more spacious ---------- */
+@media (min-width: 1024px) and (pointer: fine) {
+  :root { --maxw: 1040px; --btn-h: 72px; --fs: 20px; --fs-step: 25px; --gap: 20px; }
+  .brand { font-size: 28px; }
+  .preview { min-height: 340px; }
+  .step-panel { padding: 30px 34px; min-height: 320px; }
+  .view { gap: 22px; }
+}
+
+/* ---------- phone landscape: side-by-side ---------- */
+@media (orientation: landscape) and (max-height: 520px) {
+  :root { --btn-h: 54px; --fs-step: 19px; }
+  .topbar { padding: 6px 14px; }
+  #viewCapture { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-areas: "prev cam" "prev solve" "prev hint"; align-items: start; }
+  #viewCapture[hidden] { display: none; }
+  #dropZone { grid-area: prev; min-height: 200px; }
+  #viewCapture .row.two { grid-area: cam; }
+  #solveBtn { grid-area: solve; }
+  #pcHint { grid-area: hint; }
+  .preview img { max-height: 60vh; }
+  .step-panel { max-height: 48vh; min-height: 120px; }
+}
+
+/* ---------- Glasses: compact 600×600, pure black, high contrast ---------- */
+body.glasses {
+  --bg: #000; --panel: #000; --panel-2: #0d0d0d; --line: #3d4b5c;
+  --btn-h: 64px; --fs: 24px; --fs-step: 27px; --gap: 12px; --maxw: 600px; --radius: 16px;
+}
+body.glasses .topbar { padding: 8px 14px; }
+body.glasses .brand { font-size: 22px; }
+body.glasses #settingsBtn { display: none; }
+body.glasses main { padding: 0 14px 12px; }
+body.glasses .step-panel { border: none; padding: 4px 6px; min-height: 0; max-height: 330px; }
+body.glasses .step-title { font-size: 1.05em; margin-bottom: 6px; }
+body.glasses .answer { font-size: 1.25em; }
+body.glasses .dots { display: none; }
+body.glasses .btn.solve { font-size: 1.15em; min-height: 76px; }
+body.glasses .btn { border-width: 3px; }
+body.glasses .btn.primary { background: transparent; color: var(--info); }
+body.glasses .btn.solve { background: transparent; color: var(--accent); }
+body.glasses #newBtn { min-height: 52px; font-size: 20px; }
+body.glasses .spinner { margin-top: 20px; }
+body.glasses .small, body.glasses .step-meta { font-size: 18px; }
+body.glasses .toast { background: #000; }
+
+/* narrow phones: keep the title on one line */
+@media (max-width: 420px) {
+  .brand { font-size: 19px; white-space: nowrap; }
+  .chip { font-size: 14px; padding: 6px 12px; }
+}
+body.glasses #modelBtn { display: none; }
