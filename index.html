@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2,viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Study Solver">
+  <title>AI Study Solver</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,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">
+  <link rel="apple-touch-icon" href="data:image/png;base64,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">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <h1 class="brand"><span aria-hidden="true">∑</span> Study Solver</h1>
+    <div class="topbar-actions">
+      <button id="modelBtn" class="chip" type="button" aria-label="Switch AI model">MODEL: Opus</button>
+      <button id="settingsBtn" class="chip icon" type="button" aria-label="Settings">⚙︎</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Pick a photo (phone + PC) -->
+    <section id="viewCapture" class="view" aria-labelledby="captureTitle">
+      <h2 id="captureTitle" class="sr-only">Add a problem</h2>
+      <div id="dropZone" class="preview" aria-live="polite">
+        <img id="previewImg" alt="Selected problem photo" hidden>
+        <p id="previewHint" class="hint">Take or upload a photo of a math, chemistry, or statistics problem.</p>
+      </div>
+      <div class="row two">
+        <button id="cameraBtn" class="btn" type="button">📷 CAMERA</button>
+        <button id="uploadBtn" class="btn" type="button">🖼 UPLOAD</button>
+      </div>
+      <button id="solveBtn" class="btn solve" type="button" disabled>SOLVE</button>
+      <p class="small center" id="pcHint">Tip: on a PC you can also drag a picture here or paste one with Ctrl/⌘ + V.</p>
+      <input id="cameraInput" type="file" accept="image/*" capture="environment" hidden>
+      <input id="uploadInput" type="file" accept="image/*" hidden>
+    </section>
+
+    <!-- 1b. Glasses: wait for a solution from the phone -->
+    <section id="viewWaiting" class="view" hidden aria-labelledby="waitTitle">
+      <h2 id="waitTitle" class="big">Ready</h2>
+      <p class="lead" id="waitText">Solve a problem on your phone and it will appear here.</p>
+      <button id="latestBtn" class="btn solve" type="button">SHOW LATEST</button>
+    </section>
+
+    <!-- 2. Loading -->
+    <section id="viewLoading" class="view" hidden aria-labelledby="loadTitle">
+      <div class="spinner" aria-hidden="true"></div>
+      <h2 id="loadTitle" class="big center">Solving…</h2>
+      <p id="loadStatus" class="lead center" role="status" aria-live="polite">Sending your photo…</p>
+      <p id="loadTimer" class="small center">0 s</p>
+      <button id="cancelBtn" class="btn" type="button">CANCEL</button>
+    </section>
+
+    <!-- 3. Result with NEXT / BACK -->
+    <section id="viewResult" class="view" hidden aria-labelledby="stepTitle">
+      <div class="step-meta">
+        <span id="stepCounter">Answer</span>
+        <span id="stepSubject"></span>
+      </div>
+      <article id="stepPanel" class="step-panel" tabindex="-1" aria-live="polite">
+        <h2 id="stepTitle" class="step-title"></h2>
+        <div id="stepBody" class="step-body"></div>
+      </article>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+      <div class="row nav">
+        <button id="backBtn" class="btn" type="button">◀ BACK</button>
+        <button id="nextBtn" class="btn primary" type="button">NEXT ▶</button>
+      </div>
+      <button id="newBtn" class="btn ghost" type="button">NEW PROBLEM</button>
+      <button id="newerBtn" class="btn notice" type="button" hidden>★ NEW ANSWER READY</button>
+    </section>
+
+    <!-- 4. Error -->
+    <section id="viewError" class="view" hidden aria-labelledby="errTitle">
+      <h2 id="errTitle" class="big">Something went wrong</h2>
+      <p id="errText" class="lead" role="alert"></p>
+      <button id="retryBtn" class="btn primary" type="button">TRY AGAIN</button>
+      <button id="errNewBtn" class="btn ghost" type="button">NEW PROBLEM</button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Settings -->
+  <dialog id="settings" aria-labelledby="setTitle">
+    <form method="dialog" id="settingsForm">
+      <h2 id="setTitle">Settings</h2>
+      <label for="apiUrl">Backend URL (from Cloudflare)</label>
+      <input id="apiUrl" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://study-solver.yourname.workers.dev">
+      <label for="accessCode">Access code</label>
+      <input id="accessCode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="The ACCESS_CODE you created">
+      <label for="modeSelect">Screen layout</label>
+      <select id="modeSelect">
+        <option value="auto">Automatic</option>
+        <option value="normal">Phone / PC</option>
+        <option value="glasses">Glasses (600×600)</option>
+      </select>
+      <p id="testResult" class="small" role="status" aria-live="polite"></p>
+      <div class="row two">
+        <button id="testBtn" class="btn" type="button">TEST</button>
+        <button id="saveBtn" class="btn primary" type="button">SAVE</button>
+      </div>
+      <button id="glassLinkBtn" class="btn ghost" type="button">COPY GLASSES LINK</button>
+      <p class="small">The glasses link contains your access code. Only paste it into the Meta AI app.</p>
+      <button id="closeSettings" class="btn ghost" value="close">CLOSE</button>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
